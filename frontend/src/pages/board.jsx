@@ -6,7 +6,7 @@ import chairmanImage from '../assets/Prof.-Aliyu.png';
 import hadizaImage from '../assets/prof-hadiza.png';
 import hamzaImage from '../assets/hamza.png';
 import ibrahimImage from '../assets/Dr-Idris-scaled.png';
-import esImage from '../assets/david-odiwo.png';
+import esImage from '../assets/David.png';
 import hwilliamImage from '../assets/williams.png';
 import ehmaImage from '../assets/ehma.png';
 import idigbeImage from '../assets/idigbe.png';

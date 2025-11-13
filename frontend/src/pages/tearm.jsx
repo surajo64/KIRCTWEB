@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import dgImage from "../assets/doc1.png";
-import es from "../assets/David-Odiwo.png";
+import es from "../assets/David.png";
 import Admin from "../assets/admin.png";
 import HR from "../assets/hr.png";
 import IT from "../assets/it.png";
