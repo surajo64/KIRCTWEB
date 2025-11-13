@@ -236,19 +236,13 @@ const Header = () => {
                     {/* Enhanced Read More Button */}
                     <div className="transform hover:translate-x-2 transition-transform duration-300">
                       <Link
-                        to={slide.link}
-                        className="inline-flex items-center gap-3 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white px-6 py-3 lg:px-8 lg:py-4 rounded-xl font-semibold text-base lg:text-lg transition-all duration-300 transform hover:scale-105 shadow-2xl hover:shadow-3xl group"
-                      >
-                        <span>{slide.buttonText}</span>
-                        <svg 
-                          className="w-4 h-4 lg:w-5 lg:h-5 transform group-hover:translate-x-1 transition-transform duration-300" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                        </svg>
-                      </Link>
+  to={slide.link}
+  className="relative inline-block px-8 py-3 font-semibold text-white text-sm lg:text-base bg-red-600 hover:bg-red-700 transition-all duration-300 [clip-path:polygon(0_0,calc(100%-15px)_0,100%_50%,calc(100%-15px)_100%,0_100%,0_0)] rounded-l-full"
+>
+  <span className="tracking-wide">{slide.buttonText}</span>
+  <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">{'>'}</span>
+</Link>
+
                     </div>
                   </div>
 

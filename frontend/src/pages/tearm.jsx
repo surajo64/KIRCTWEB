@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import dgImage from "../assets/doc1.png";
 import es from "../assets/David-Odiwo.png";
-import hadizaImage from "../assets/prof-hadiza.png";
-import ibrahimImage from "../assets/Dr-Idris-scaled.png";
+import Admin from "../assets/admin.png";
+import HR from "../assets/hr.png";
+import IT from "../assets/it.png";
+import Legal from "../assets/legal.png";
+import Bus from "../assets/bus.png";
+import CMD from "../assets/cmd.png";
+import Acc from "../assets/denis.png";
+import ibrahimImage from "../assets/upload_area.png";
 
 const Team = () => {
   const [selectedMember, setSelectedMember] = useState(null);
@@ -31,19 +37,19 @@ const Team = () => {
     },
     {
       id: 3,
-      name: "Prof. Hadiza Saidu",
-      title: "Head of Cardiovascular Research",
-      image: ibrahimImage,
+      name: "Prof. Jameel Ismail Ahmad",
+      title: "CMD KIRCT Kilimanjaro hospital",
+      image: CMD,
       description:
-        "Expert in cardiovascular health and women’s health initiatives.",
+        "A Cardiovascular and Thoracic Surgeon, an Associate Professor of Surgery and a healthcare entrepreneur.",
       details:
-        "Prof. Hadiza Saidu drives key programs on cardiac research and advocacy for women’s health improvement across northern Nigeria.",
+        "A Cardiovascular and Thoracic Surgeon, an Associate Professor of Surgery and a healthcare entrepreneur. He completed a training in Cardiovascular and Thoracic Surgery in 2014 (in Nigeria, Ghana and India) and he currently offers specialized cardiovascular and Thoracic surgical services, training and research as well as engaging in healthcare entrepreneurship after obtaining a Masters in business Administration (specialization in entrepreneurship and venture creation) in 2020.",
     },
     {
       id: 4,
-      name: "Dr. Ibrahim Musa Idris",
-      title: "Head of Hematology Research",
-      image: ibrahimImage,
+      name: "Iliyasu Salihu",
+      title: "Head Of Administration",
+      image: Admin,
       description:
         "Oversees hematology and clinical research focusing on sickle cell disease.",
       details:
@@ -51,9 +57,9 @@ const Team = () => {
     },
      {
       id: 5,
-      name: "Prof. Muhammad Hamza",
-      title: "Director, Infectious Disease Research",
-      image: ibrahimImage,
+      name: "Hassana Kassim",
+      title: "Head of Human Resource",
+      image: HR,
       description:
         "Leads infectious disease research, focusing on malaria, TB, and HIV studies.",
       details:
@@ -61,9 +67,9 @@ const Team = () => {
     },
     {
       id: 6,
-      name: "Prof. Hadiza Saidu",
-      title: "Head of Cardiovascular Research",
-      image: hadizaImage,
+      name: "Denis Isho",
+      title: "Head of Account",
+      image: Acc,
       description:
         "Expert in cardiovascular health and women’s health initiatives.",
       details:
@@ -71,8 +77,8 @@ const Team = () => {
     },
     {
       id: 7,
-      name: "Dr. Ibrahim Musa Idris",
-      title: "Head of Hematology Research",
+      name: "Dr. Nasiru Abdullahi",
+      title: "Head of Research Lab",
       image: ibrahimImage,
       description:
         "Oversees hematology and clinical research focusing on sickle cell disease.",
@@ -81,9 +87,9 @@ const Team = () => {
     },
      {
       id: 8,
-      name: "Prof. Hadiza Saidu",
-      title: "Head of Cardiovascular Research",
-      image: hadizaImage,
+      name: "Eng. Muhammad Sabo",
+      title: "Head of Maintenace",
+      image: ibrahimImage,
       description:
         "Expert in cardiovascular health and women’s health initiatives.",
       details:
@@ -91,9 +97,39 @@ const Team = () => {
     },
     {
       id: 9,
-      name: "Dr. Ibrahim Musa Idris",
-      title: "Head of Hematology Research",
+      name: "Surajo Umar Danja",
+      title: "Head of IT Department",
+      image: IT,
+      description:
+        "Danja Surajo Umar is an experienced IT Consultant with a strong academic background and over 5 years of hands-on experience in network administration.",
+      details:
+        "Danja Surajo Umar is an experienced IT Consultant with a strong academic background and over 5 years of hands-on experience in network administration, IT infrastructure, and web technologies. With a Master’s degree in Information Technology and a proven record across educational institutions and public sector agencies, Danja brings a strategic approach to integrating technology solutions that enhance operational efficiency and data security within financial environments. His expertise spans secure network configuration, structured cabling, and custom web development using frameworks such as ASP.NET, PHP, and React—ensuring accounting systems are both scalable and secure. Danja’s teaching and administrative roles have equipped him with the skills to communicate technical concepts clearly to non-technical stakeholders, making him a valuable bridge between IT and finance teams. Core Competencies Network Security & Device Configuration Financial Systems Support & Infrastructure Optimization Full-Stack Web Development (ASP.NET, React, PHP) Data Integrity & Backup Solutions User Training & Documentation IT Compliance for Financial Processes",
+    },
+    {
+      id: 10,
+      name: "Barr. Nazir Ibrahim",
+      title: "Head of Legal Department",
+      image: Legal,
+      description:
+        "Oversees hematology and clinical research focusing on sickle cell disease.",
+      details:
+        "Dr. Idris specializes in hematology and clinical trials, leading a team focused on improving diagnostic and treatment outcomes in blood disorders.",
+    },
+     {
+      id: 11,
+      name: "Dr. Hassan Adam",
+      title: "Head of Epidemiology Research",
       image: ibrahimImage,
+      description:
+        "Oversees hematology and clinical research focusing on sickle cell disease.",
+      details:
+        "Dr. Idris specializes in hematology and clinical trials, leading a team focused on improving diagnostic and treatment outcomes in blood disorders.",
+    },
+    {
+      id: 12,
+      name: "Imran Nasir Tahir",
+      title: "Head of Business Development",
+      image: Bus,
       description:
         "Oversees hematology and clinical research focusing on sickle cell disease.",
       details:
@@ -179,7 +215,7 @@ const Team = () => {
                   <h3 className="text-white font-bold text-lg">
                     {member.name}
                   </h3>
-                  <p className="text-blue-200 text-sm">{member.title}</p>
+                  <p className="text-blue-200 text-bold text-sm">{member.title}</p>
                 </div>
               </div>
               <div className="p-6">
@@ -195,35 +231,41 @@ const Team = () => {
         </div>
       </div>
 
-      {/* Profile Modal */}
-      {isModalOpen && selectedMember && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl max-w-lg w-full relative overflow-hidden">
-            <button
-              onClick={closeModal}
-              className="absolute top-3 right-3 text-gray-700 hover:text-red-600 text-2xl font-bold"
-            >
-              &times;
-            </button>
-            <div className="h-64 overflow-hidden">
-              <img
-                src={selectedMember.image}
-                alt={selectedMember.name}
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-blue-800 mb-2">
-                {selectedMember.name}
-              </h3>
-              <p className="text-gray-500 mb-4">{selectedMember.title}</p>
-              <p className="text-gray-700 leading-relaxed">
-                {selectedMember.details}
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
+{/* Profile Modal */}
+{isModalOpen && selectedMember && (
+  <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 overflow-y-auto">
+    <div className="bg-white rounded-2xl max-w-lg w-full relative overflow-hidden shadow-2xl my-8">
+      {/* Close Button */}
+      <button
+        onClick={closeModal}
+        className="absolute top-3 right-3 text-gray-700 hover:text-red-600 text-2xl font-bold z-10"
+      >
+        &times;
+      </button>
+
+      {/* Image Section (fit properly without cutting) */}
+      <div className="w-full bg-gray-100 flex items-center justify-center">
+        <img
+          src={selectedMember.image}
+          alt={selectedMember.name}
+          className="object-contain max-h-80 w-auto"
+        />
+      </div>
+
+      {/* Info Section (scrollable if long) */}
+      <div className="p-6 max-h-[60vh] overflow-y-auto">
+        <h3 className="text-2xl font-bold text-blue-800 mb-2 text-center">
+          {selectedMember.name}
+        </h3>
+        <p className="text-gray-500 mb-4 text-center">{selectedMember.title}</p>
+        <p className="text-gray-700 leading-relaxed whitespace-pre-line">
+          {selectedMember.details}
+        </p>
+      </div>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

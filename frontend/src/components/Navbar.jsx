@@ -47,7 +47,7 @@ const Navbar = () => {
       type: "dropdown",
       items: [
         { name: "About Us", path: "/about" },
-        { name: "Our Team", path: "/tearm" },
+        { name: "Our Team", path: "/team" },
         { name: "Facility Description", path: "/facility" },
         { name: "Corporate Profile", path: "/profile" },
         { name: "Meet Our DG", path: "/about-dg" },

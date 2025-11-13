@@ -37,7 +37,7 @@ const Home = () => {
               </p>
               <button
                 onClick={() => navigate("/services")}
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md font-semibold transition-all duration-300"
+                className="relative inline-block px-8 py-3 font-semibold text-white text-sm lg:text-base bg-red-600 hover:bg-red-700 transition-all duration-300 [clip-path:polygon(0_0,calc(100%-15px)_0,100%_50%,calc(100%-15px)_100%,0_100%,0_0)] rounded-l-full"
               >
                 OUR SERVICES
               </button>
@@ -56,7 +56,7 @@ const Home = () => {
               </p>
               <button
                 onClick={() => navigate("/board")}
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-md font-semibold transition-all duration-300"
+                className="relative inline-block px-8 py-3 font-semibold text-white text-sm lg:text-base bg-red-600 hover:bg-red-700 transition-all duration-300 [clip-path:polygon(0_0,calc(100%-15px)_0,100%_50%,calc(100%-15px)_100%,0_100%,0_0)] rounded-l-full"
               >
                 BOARD OF TRUSTEES
               </button>
