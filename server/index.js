@@ -44,23 +44,6 @@ app.use(express.json());
 app.use('/api/admin', adminRouter);
 
 
-// ✅ 10. Serve Frontend Build (if available)
-// Serve Frontend Build
-const frontendPath = path.join(__dirname, '..', 'frontend', 'dist');
-
-console.log("Serving frontend from:", frontendPath);
-
-if (fs.existsSync(frontendPath)) {
-  app.use(express.static(frontendPath));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(frontendPath, 'index.html'));
-  });
-} else {
-  console.log("❌ Dist folder not found:", frontendPath);
-}
-
-
 // ✅ 11. Start Server
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
