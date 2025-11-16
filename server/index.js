@@ -44,7 +44,7 @@ app.use(express.json());
 app.use('/api/admin', adminRouter);
 
 
-/*// ✅ 10. Serve Frontend Build (if available)
+// ✅ 10. Serve Frontend Build (if available)
 const frontendPath = path.join(__dirname, '..', 'frontend', 'dist');
 if (fs.existsSync(frontendPath)) {
   app.use(express.static(frontendPath));
@@ -53,7 +53,7 @@ if (fs.existsSync(frontendPath)) {
   });
 } else {
   console.error('❌ Frontend build directory not found:', frontendPath);
-}*/
+}
 
 // ✅ 11. Start Server
 const PORT = process.env.PORT || 5000;
