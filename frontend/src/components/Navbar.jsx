@@ -155,7 +155,7 @@ const Navbar = () => {
                 to={item.path}
                 className="px-3 py-2 text-sm rounded-full bg-gradient-to-r from-blue-700 via-red-600 to-blue-700 text-white font-semibold"
               >
-                <Database className="w-4 h-4 inline mr-1" /> REDCap
+                 REDCap
               </Link>
             ) : item.type === "link" ? (
               <NavLink
