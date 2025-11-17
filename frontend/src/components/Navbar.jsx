@@ -144,11 +144,11 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <div className="container mx-auto px-3 sm:px-4 py-2 lg:py-3 flex justify-between items-center">
+      <div className="container mx-auto px-2 sm:px-3 py-1 lg:py-2 flex justify-between items-center">
         {/* Logo */}
         <div
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 sm:gap-3 cursor-pointer group flex-shrink-0"
+          className="flex items-center gap-1 sm:gap-2 cursor-pointer group flex-shrink-0"
         >
           <img
             src={logo}
