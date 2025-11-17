@@ -129,7 +129,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <div className="container mx-auto px-3 flex justify-between items-center py-2">
+      <div className="container mx-1 px-2 flex justify-between items-center py-2">
         {/* Logo */}
         <div
           onClick={() => navigate("/")}
