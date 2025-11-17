@@ -113,12 +113,12 @@ const Navbar = () => {
     { name: "NEWS", path: "/news", type: "link" },
     { name: "CONTACT", path: "/contact", type: "link" },
   ];
-// <nav className="bg-gradient-to-r from-blue-900 via-blue-800 to-red-700 text-white shadow-xl sticky top-0 z-50">
+  // <nav className="bg-gradient-to-r from-blue-900 via-blue-800 to-red-700 text-white shadow-xl sticky top-0 z-50">
   return (
-   <nav className="bg-white text-gray-700 shadow-xl sticky top-0 z-50">
-   
+    <nav className="bg-white text-gray-700 shadow-xl sticky top-0 z-50">
+
       {/* Scrolling Banner */}
-      <div className="relative overflow-hidden bg-blue-950 py-2 text-sm text-blue-200">
+      <div className="relative overflow-hidden bg-blue-950 py-2 text-sm text-blue-200 hidden md:block">
         <div className="animate-marquee whitespace-nowrap flex items-center px-6">
           <span className="mx-12">👋 Welcome to Kano Independent Research Centre Trust!</span>
           <span className="mx-12">Need REDCap Free Access ? Click the glowing button below!</span>
@@ -129,7 +129,7 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <div className="container mx-auto px-4 flex justify-between items-center py-3">
+      <div className="container mx-auto px-4 flex justify-between items-center py-3 flex-wrap">
         {/* Logo */}
         <div
           onClick={() => navigate("/")}
@@ -138,13 +138,13 @@ const Navbar = () => {
           <img
             src={logo}
             alt="KIRCT Logo"
-            className="w-12 h-12 bg-white rounded-lg p-1 transition-transform group-hover:scale-110"
+            className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-lg p-1 transition-transform group-hover:scale-110"
           />
-          <span className="text-xl font-bold text-blue-800 leading-tight">KIRCT</span>
+          <span className="text-lg md:text-xl font-bold text-blue-800 leading-tight">KIRCT</span>
         </div>
 
         {/* Desktop Menu */}
-        <div ref={dropdownRef} className="hidden xl:flex items-center space-x-2">
+        <div ref={dropdownRef} className="hidden lg:flex items-center space-x-2">
           {menuItems.map((item, index) =>
             item.name === "REDCap" ? (
               <motion.div
