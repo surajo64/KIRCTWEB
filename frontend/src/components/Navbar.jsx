@@ -129,9 +129,9 @@ const Navbar = () => {
       </div>
 
       {/* Main Navbar */}
-      <div className="container mx-1 px-2 flex justify-between items-center py-2">
+      
        
-<div className="w-full flex items-center justify-between px-4">
+<div className="w-full flex items-center justify-between px-4 py-2">
   
   {/* LEFT SIDE: Logo + KIRCT */}
    {/* Logo */}
@@ -147,7 +147,7 @@ const Navbar = () => {
           <span className="text-xl font-bold text-blue-800 leading-tight">KIRCT</span>
         </div>
   {/* RIGHT SIDE: Desktop Menu */}
-  <div ref={dropdownRef} className="hidden xl:flex items-center space-x-1">
+  <div ref={dropdownRef} className="hidden xl:flex items-center space-x-3">
     {menuItems.map((item, index) =>
       item.name === "REDCap" ? (
         <motion.div
@@ -252,7 +252,7 @@ const Navbar = () => {
         </div>
       )
     )}
-  </div>
+ 
 
 </div>
 
