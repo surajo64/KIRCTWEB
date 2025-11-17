@@ -142,9 +142,11 @@ const Navbar = () => {
           />
           <span className="text-xl font-bold text-blue-800 leading-tight">KIRCT</span>
         </div>
+<div>
 
+</div>
         {/* Desktop Menu */}
-        <div ref={dropdownRef} className="hidden xl:flex items-center space-x-2">
+        <div ref={dropdownRef} className="hidden xl:flex items-center space-x-3">
           {menuItems.map((item, index) =>
             item.name === "REDCap" ? (
               <motion.div
@@ -202,7 +204,7 @@ const Navbar = () => {
                 onMouseEnter={() => handleDropdownEnter(item.name)}
                 onMouseLeave={handleDropdownLeave}
               >
-                <button className="px-2 py-1 flex items-center text-sm font-semibold hover:text-blue-600 transition-all">
+                <button className="px-1 py-1 flex items-center text-sm font-semibold hover:text-blue-600 transition-all">
                   {item.name}
                   <svg
                     className={`ml-1 w-3 h-3 transition-transform ${activeDropdown === item.name ? "rotate-180" : ""
