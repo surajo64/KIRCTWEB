@@ -30,6 +30,17 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Close mobile menu when resizing to larger screen
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1280) {
+        setShowMenu(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleDropdownEnter = (menu) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setActiveDropdown(menu);
@@ -113,19 +124,23 @@ const Navbar = () => {
     { name: "NEWS", path: "/news", type: "link" },
     { name: "CONTACT", path: "/contact", type: "link" },
   ];
-// <nav className="bg-gradient-to-r from-blue-900 via-blue-800 to-red-700 text-white shadow-xl sticky top-0 z-50">
+
   return (
-   <nav className="bg-white text-gray-700 shadow-xl sticky top-0 z-50">
-   
-      {/* Scrolling Banner */}
-      <div className="relative overflow-hidden bg-blue-950 py-2 text-sm text-blue-200">
-        <div className="animate-marquee whitespace-nowrap flex items-center px-6">
-          <span className="mx-12">👋 Welcome to Kano Independent Research Centre Trust!</span>
-          <span className="mx-12">Need REDCap Free Access ? Click the glowing button below!</span>
-          <span className="mx-12">📞 +234-80-80383147</span>
-          <span className="mx-12">✉️ info@kirct.com</span>
-          <span className="mx-12">🌐 www.kirct.com</span>
+    <nav className="bg-white text-gray-700 shadow-xl sticky top-0 z-50">
+      {/* Scrolling Banner - Hidden on mobile */}
+      <div className="hidden sm:block relative overflow-hidden bg-blue-950 py-2 text-sm text-blue-200">
+        <div className="animate-marquee whitespace-nowrap flex items-center px-4">
+          <span className="mx-4 sm:mx-6">👋 Welcome to Kano Independent Research Centre Trust!</span>
+          <span className="mx-4 sm:mx-6">Need REDCap Free Access? Click the glowing button!</span>
+          <span className="mx-4 sm:mx-6">📞 +234-80-80383147</span>
+          <span className="mx-4 sm:mx-6">✉️ info@kirct.com</span>
+          <span className="mx-4 sm:mx-6">🌐 www.kirct.com</span>
         </div>
+      </div>
+
+      {/* Mobile Banner - Simplified */}
+      <div className="sm:hidden bg-blue-950 py-1 px-3 text-xs text-blue-200 text-center">
+        <span>📞 +234-80-80383147 | ✉️ info@kirct.com</span>
       </div>
 
       {/* Main Navbar */}
@@ -133,18 +148,18 @@ const Navbar = () => {
         {/* Logo */}
         <div
           onClick={() => navigate("/")}
-          className="flex items-center gap-3 cursor-pointer group"
+          className="flex items-center gap-2 sm:gap-3 cursor-pointer group flex-shrink-0"
         >
           <img
             src={logo}
             alt="KIRCT Logo"
-            className="w-12 h-12 bg-white rounded-lg p-1 transition-transform group-hover:scale-110"
+            className="w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-lg p-1 transition-transform group-hover:scale-110"
           />
-          <span className="text-xl font-bold text-blue-800 leading-tight">KIRCT</span>
+          <span className="text-lg sm:text-xl font-bold text-blue-800 leading-tight">KIRCT</span>
         </div>
 
-        {/* Desktop Menu */}
-        <div ref={dropdownRef} className="hidden xl:flex items-center space-x-2">
+        {/* Desktop Menu - Show on large screens */}
+        <div ref={dropdownRef} className="hidden lg:flex items-center space-x-1 xl:space-x-2">
           {menuItems.map((item, index) =>
             item.name === "REDCap" ? (
               <motion.div
@@ -152,8 +167,7 @@ const Navbar = () => {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 whileHover={{
-                  scale: 1.1,
-                  rotate: 1,
+                  scale: 1.05,
                   textShadow: "0px 0px 8px rgba(255,255,255,0.8)",
                 }}
                 transition={{ type: "spring", stiffness: 200, damping: 10 }}
@@ -161,9 +175,9 @@ const Navbar = () => {
               >
                 <Link
                   to={item.path}
-                  className="flex items-center gap-2 px-5 py-2 rounded-full bg-gradient-to-r from-blue-700 via-red-600 to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-blue-700 via-red-600 to-blue-700 text-white font-semibold text-sm sm:text-base shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <Database className="w-4 h-4" />
+                  <Database className="w-3 h-3 sm:w-4 sm:h-4" />
                   <span>{item.name}</span>
                 </Link>
 
@@ -187,9 +201,10 @@ const Navbar = () => {
                 key={index}
                 to={item.path}
                 className={({ isActive }) =>
-                  `px-4 py-3 text-sm font-semibold border-b-2 transition-all ${isActive
-                    ? "border-blue-600 text-blue-700"
-                    : "border-transparent hover:text-blue-700 hover:border-blue-400"
+                  `px-2 sm:px-3 lg:px-4 py-2 sm:py-3 text-xs sm:text-sm font-semibold border-b-2 transition-all whitespace-nowrap ${
+                    isActive
+                      ? "border-blue-600 text-blue-700"
+                      : "border-transparent hover:text-blue-700 hover:border-blue-400"
                   }`
                 }
               >
@@ -202,11 +217,12 @@ const Navbar = () => {
                 onMouseEnter={() => handleDropdownEnter(item.name)}
                 onMouseLeave={handleDropdownLeave}
               >
-                <button className="px-4 py-3 flex items-center text-sm font-semibold hover:text-blue-600 transition-all">
+                <button className="px-2 sm:px-3 lg:px-4 py-2 sm:py-3 flex items-center text-xs sm:text-sm font-semibold hover:text-blue-600 transition-all whitespace-nowrap">
                   {item.name}
                   <svg
-                    className={`ml-1 w-3 h-3 transition-transform ${activeDropdown === item.name ? "rotate-180" : ""
-                      }`}
+                    className={`ml-1 w-3 h-3 transition-transform ${
+                      activeDropdown === item.name ? "rotate-180" : ""
+                    }`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -227,13 +243,13 @@ const Navbar = () => {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
                       transition={{ duration: 0.2 }}
-                      className="absolute left-0 top-full mt-1 min-w-60 bg-white text-gray-700 rounded-lg shadow-xl py-2 border border-blue-100 z-[999]"
+                      className="absolute left-0 top-full mt-1 min-w-48 sm:min-w-56 bg-white text-gray-700 rounded-lg shadow-xl py-2 border border-blue-100 z-[999]"
                     >
                       {item.items.map((subItem, subIndex) => (
                         <NavLink
                           key={subIndex}
                           to={subItem.path}
-                          className="block px-5 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 transition-all"
+                          className="block px-3 sm:px-4 py-2 text-xs sm:text-sm hover:bg-blue-50 hover:text-blue-700 transition-all"
                           onClick={() => setActiveDropdown(null)}
                         >
                           {subItem.name}
@@ -247,12 +263,13 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
+        {/* Mobile Menu Toggle - Show on small and medium screens */}
         <button
           onClick={() => setShowMenu(true)}
-          className="xl:hidden p-2 hover:bg-blue-700 rounded-lg transition-colors"
+          className="lg:hidden p-2 hover:bg-blue-50 rounded-lg transition-colors"
+          aria-label="Open menu"
         >
-          <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
@@ -265,23 +282,27 @@ const Navbar = () => {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ duration: 0.4 }}
-            className="fixed inset-0 bg-gradient-to-br from-blue-900 to-blue-800 z-50 flex flex-col"
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed inset-0 bg-gradient-to-br from-blue-900 to-blue-800 z-50 flex flex-col lg:hidden"
           >
             {/* Header */}
-            <div className="flex justify-between items-center px-6 py-4 border-b border-blue-700">
+            <div className="flex justify-between items-center px-4 sm:px-6 py-4 border-b border-blue-700 bg-blue-900">
               <div className="flex items-center gap-3">
                 <img className="w-10 h-10 bg-white rounded-lg p-1" src={logo} alt="Logo" />
                 <span className="text-lg font-bold text-white">KIRCT</span>
               </div>
-              <button onClick={() => setShowMenu(false)}>
-                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <button 
+                onClick={() => setShowMenu(false)}
+                className="p-2 hover:bg-blue-700 rounded-lg transition-colors"
+                aria-label="Close menu"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
-            {/* Items */}
+            {/* Menu Items */}
             <div className="flex-1 overflow-y-auto py-4">
               {menuItems.map((item, index) => (
                 <div key={index} className="border-b border-blue-700">
@@ -289,7 +310,11 @@ const Navbar = () => {
                     <NavLink
                       to={item.path}
                       onClick={() => setShowMenu(false)}
-                      className="block px-6 py-3 text-blue-100 hover:bg-blue-700 transition"
+                      className={({ isActive }) =>
+                        `block px-6 py-4 text-blue-100 hover:bg-blue-700 transition ${
+                          isActive ? "bg-blue-700 font-semibold" : ""
+                        }`
+                      }
                     >
                       {item.name}
                     </NavLink>
@@ -299,12 +324,13 @@ const Navbar = () => {
                         onClick={() =>
                           setActiveDropdown(activeDropdown === item.name ? null : item.name)
                         }
-                        className="flex justify-between w-full px-6 py-3 text-blue-100 hover:bg-blue-700"
+                        className="flex justify-between items-center w-full px-6 py-4 text-blue-100 hover:bg-blue-700 transition"
                       >
-                        {item.name}
+                        <span>{item.name}</span>
                         <svg
-                          className={`w-4 h-4 transform transition-transform ${activeDropdown === item.name ? "rotate-180" : ""
-                            }`}
+                          className={`w-4 h-4 transform transition-transform ${
+                            activeDropdown === item.name ? "rotate-180" : ""
+                          }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -318,13 +344,18 @@ const Navbar = () => {
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            className="bg-blue-800"
+                            transition={{ duration: 0.3 }}
+                            className="bg-blue-800 overflow-hidden"
                           >
                             {item.items.map((subItem, i) => (
                               <NavLink
                                 key={i}
                                 to={subItem.path}
-                                className="block px-8 py-2 text-blue-100 hover:bg-blue-700 text-sm"
+                                className={({ isActive }) =>
+                                  `block px-8 py-3 text-blue-100 hover:bg-blue-700 text-sm border-l-4 transition ${
+                                    isActive ? "bg-blue-700 border-blue-400 font-medium" : "border-transparent"
+                                  }`
+                                }
                                 onClick={() => setShowMenu(false)}
                               >
                                 {subItem.name}
@@ -337,6 +368,15 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
+            </div>
+
+            {/* Mobile Footer */}
+            <div className="p-4 bg-blue-900 border-t border-blue-700">
+              <div className="text-center text-blue-200 text-sm">
+                <p>📞 +234-80-80383147</p>
+                <p>✉️ info@kirct.com</p>
+                <p className="mt-2 text-xs">Kano Independent Research Centre Trust</p>
+              </div>
             </div>
           </motion.div>
         )}
