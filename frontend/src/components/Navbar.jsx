@@ -146,7 +146,7 @@ const Navbar = () => {
 
 </div>
         {/* Desktop Menu */}
-        <div ref={dropdownRef} className="hidden xl:flex items-center space-x-3">
+        <div ref={dropdownRef} className="hidden xl:flex items-center space-x-3 ">
           {menuItems.map((item, index) =>
             item.name === "REDCap" ? (
               <motion.div
@@ -163,7 +163,7 @@ const Navbar = () => {
               >
                 <Link
                   to={item.path}
-                  className="flex items-center gap-1 px-4 py-1 rounded-full bg-gradient-to-r from-blue-700 via-red-600 to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+                  className="flex items-end gap-1 px-4 py-1 rounded-full bg-gradient-to-r from-blue-700 via-red-600 to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 mx-2"
                 >
                  
                   <span>{item.name}</span>
