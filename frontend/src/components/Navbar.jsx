@@ -130,7 +130,11 @@ const Navbar = () => {
 
       {/* Main Navbar */}
       <div className="container mx-1 px-2 flex justify-between items-center py-2">
-        {/* Logo */}
+       
+<div className="w-full flex items-center justify-between px-4">
+  
+  {/* LEFT SIDE: Logo + KIRCT */}
+   {/* Logo */}
         <div
           onClick={() => navigate("/")}
           className="flex items-center gap-3 cursor-pointer group"
@@ -142,112 +146,116 @@ const Navbar = () => {
           />
           <span className="text-xl font-bold text-blue-800 leading-tight">KIRCT</span>
         </div>
-<div>
+  {/* RIGHT SIDE: Desktop Menu */}
+  <div ref={dropdownRef} className="hidden xl:flex items-center space-x-1">
+    {menuItems.map((item, index) =>
+      item.name === "REDCap" ? (
+        <motion.div
+          key={index}
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{
+            scale: 1.1,
+            rotate: 1,
+            textShadow: "0px 0px 8px rgba(255,255,255,0.8)",
+          }}
+          transition={{ type: "spring", stiffness: 200, damping: 10 }}
+          className="relative"
+        >
+          <Link
+            to={item.path}
+            className="flex items-end gap-1 px-3 py-1 rounded-full 
+            bg-gradient-to-r from-blue-700 via-red-600 to-blue-700 
+            text-white font-semibold shadow-md hover:shadow-lg 
+            transition-all duration-300"
+          >
+            <span>{item.name}</span>
+          </Link>
+
+          <motion.span
+            className="pointer-events-none absolute inset-0 rounded-full 
+            bg-gradient-to-r from-blue-400 via-red-400 to-blue-400 
+            opacity-70 blur-lg"
+            animate={{
+              opacity: [0.6, 1, 0.6],
+              scale: [1, 1.1, 1],
+              filter: ["blur(8px)", "blur(12px)", "blur(8px)"],
+            }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
+      ) : item.type === "link" ? (
+        <NavLink
+          key={index}
+          to={item.path}
+          className={({ isActive }) =>
+            `px-3 py-3 text-sm font-semibold border-b-2 transition-all ${
+              isActive
+                ? "border-blue-600 text-blue-700"
+                : "border-transparent hover:text-blue-700 hover:border-blue-400"
+            }`
+          }
+        >
+          {item.name}
+        </NavLink>
+      ) : (
+        <div
+          key={index}
+          className="relative"
+          onMouseEnter={() => handleDropdownEnter(item.name)}
+          onMouseLeave={handleDropdownLeave}
+        >
+          <button className="px-2 py-1 flex items-center text-sm font-semibold hover:text-blue-600 transition-all">
+            {item.name}
+            <svg
+              className={`ml-1 w-3 h-3 transition-transform ${
+                activeDropdown === item.name ? "rotate-180" : ""
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+          </button>
+
+          <AnimatePresence>
+            {activeDropdown === item.name && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="absolute left-0 top-full mt-1 min-w-60 bg-white 
+                text-gray-700 rounded-lg shadow-xl py-2 border 
+                border-blue-100 z-[999]"
+              >
+                {item.items.map((subItem, subIndex) => (
+                  <NavLink
+                    key={subIndex}
+                    to={subItem.path}
+                    className="block px-5 py-2 text-sm hover:bg-blue-50 
+                    hover:text-blue-700 transition-all"
+                    onClick={() => setActiveDropdown(null)}
+                  >
+                    {subItem.name}
+                  </NavLink>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      )
+    )}
+  </div>
 
 </div>
-        {/* Desktop Menu */}
-        <div ref={dropdownRef} className="hidden xl:flex items-center space-x-3 ">
-          {menuItems.map((item, index) =>
-            item.name === "REDCap" ? (
-              <motion.div
-                key={index}
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                whileHover={{
-                  scale: 1.1,
-                  rotate: 1,
-                  textShadow: "0px 0px 8px rgba(255,255,255,0.8)",
-                }}
-                transition={{ type: "spring", stiffness: 200, damping: 10 }}
-                className="relative"
-              >
-                <Link
-                  to={item.path}
-                  className="flex items-end gap-1 px-4 py-1 rounded-full bg-gradient-to-r from-blue-700 via-red-600 to-blue-700 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 mx-2"
-                >
-                 
-                  <span>{item.name}</span>
-                </Link>
 
-                {/* Animated Glow */}
-                <motion.span
-                  className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-red-400 to-blue-400 opacity-70 blur-lg"
-                  animate={{
-                    opacity: [0.6, 1, 0.6],
-                    scale: [1, 1.1, 1],
-                    filter: ["blur(8px)", "blur(12px)", "blur(8px)"],
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-              </motion.div>
-            ) : item.type === "link" ? (
-              <NavLink
-                key={index}
-                to={item.path}
-                className={({ isActive }) =>
-                  `px-4 py-3 text-sm font-semibold border-b-2 transition-all ${isActive
-                    ? "border-blue-600 text-blue-700"
-                    : "border-transparent hover:text-blue-700 hover:border-blue-400"
-                  }`
-                }
-              >
-                {item.name}
-              </NavLink>
-            ) : (
-              <div
-                key={index}
-                className="relative"
-                onMouseEnter={() => handleDropdownEnter(item.name)}
-                onMouseLeave={handleDropdownLeave}
-              >
-                <button className="px-1 py-1 flex items-center text-sm font-semibold hover:text-blue-600 transition-all">
-                  {item.name}
-                  <svg
-                    className={`ml-1 w-3 h-3 transition-transform ${activeDropdown === item.name ? "rotate-180" : ""
-                      }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
-
-                <AnimatePresence>
-                  {activeDropdown === item.name && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute left-0 top-full mt-1 min-w-60 bg-white text-gray-700 rounded-lg shadow-xl py-2 border border-blue-100 z-[999]"
-                    >
-                      {item.items.map((subItem, subIndex) => (
-                        <NavLink
-                          key={subIndex}
-                          to={subItem.path}
-                          className="block px-5 py-2 text-sm hover:bg-blue-50 hover:text-blue-700 transition-all"
-                          onClick={() => setActiveDropdown(null)}
-                        >
-                          {subItem.name}
-                        </NavLink>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )
-          )}
-        </div>
 
         {/* Mobile Menu Toggle */}
         <button
